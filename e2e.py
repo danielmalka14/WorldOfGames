@@ -16,9 +16,9 @@ def test_scores_service():
 def main_function():
     test_scores_service()
     if score_results == True:
-        print("work")
+        print("the test completed successfully.")
     elif score_results == False:
-        print("work")
+        print("the test failed.")
 
 main_function()
 

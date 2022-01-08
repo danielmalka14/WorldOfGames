@@ -1,9 +1,9 @@
 from flask import Flask, render_template
-from Utils import *
+import os
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def score_server():
     try:
         with open("Scores.txt", 'r') as user_score:
@@ -16,4 +16,5 @@ def score_server():
             return render_template('alt_scores.html', score=content, ERROR=BAD_RETURN_CODE)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)

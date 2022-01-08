@@ -6,11 +6,11 @@ def add_score(selected_difficulty, game_result, another_round):
 
     try:
         if game_result == True:
-            SCORES_FILE_NAME
-            write_score = SCORES_FILE_NAME.write(str(POINTS_OF_WINNING))
+            with SCORES_FILE_NAME as write_scores:
+                write = write_scores.write(str(POINTS_OF_WINNING))
 
         if another_round == "y" and game_result == True:
-            with open("Scores.txt", 'w') as write_again:
+            with open("Scores.txt", 'w+') as write_again:
                 int_score = int(write_again.readline())
                 print(int_score)
                 int_score += POINTS_OF_WINNING
