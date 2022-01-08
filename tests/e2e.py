@@ -6,8 +6,9 @@ score_results = False
 
 def test_scores_service():
     chrome_driver = webdriver.Chrome(executable_path=r"/home/daniel/Downloads/chromedriver_linux64/chromedriver")
-    chrome_driver.get("http://127.0.0.1:5000/")
-    score = chrome_driver.find_element(By.XPATH, '/html/body/p/b')
+    chrome_driver.get("http://10.0.2.15:5000/")
+    score = chrome_driver.f
+    print(score)
 
     if score in range(0, 1000):
         score_results = True
