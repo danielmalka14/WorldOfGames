@@ -7,5 +7,3 @@ COPY ./MainScores.py /app
 COPY ./Scores.txt /app
 COPY ./alt_score.txt /app
 CMD python /app/MainScores.py
-
-
