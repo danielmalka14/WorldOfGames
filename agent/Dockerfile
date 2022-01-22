@@ -23,11 +23,11 @@ RUN apt install libgbm1 -y && \
 
 RUN pip3 install selenium
 RUN pip3 install pyvirtualdisplay
-COPY /home/daniel/Documents/WorldOfGames/MainScores.py /app
-ADD /home/daniel/Documents/WorldOfGames/tests /app/tests
-ADD /home/daniel/Documents/WorldOfGames/templates /app/templates
-COPY /home/daniel/Documents/WorldOfGames/alt_score.txt /app
-COPY /home/daniel/Documents/WorldOfGames/Scores.txt /app
+COPY ./*.py /app/
+COPY ./*.txt /app/
+COPY ./*.html /app/
+ADD ./dind /app
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 ENV PYTHONUNBUFFERED=1
+CMD mv Dockerfile.txt Dockerfile

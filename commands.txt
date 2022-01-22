@@ -12,3 +12,10 @@ docker-compose up -d
 
 # In case we want to scale out the worker:
 docker-compose up -d --scale worker=1
+
+# update docker compose containers
+docker-compose up --force-recreate --build -d
+docker image prune -f
+
+# connect worker
+docker exec -i 
