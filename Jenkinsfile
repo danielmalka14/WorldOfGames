@@ -1,30 +1,39 @@
 pipeline {
-    agent any 
+    agent { label 'agent_1' }
     stages {
         stage('Checkout') { 
             steps {
-                'git checkout master'
+                sh 'git config --global user.name danielmalka14'
+                sh 'git init'
+                sh 'git checkout -b my-main-branch'
             }
         }
         stage('Build') { 
             steps {
-                'docker build -t flask-app .'
+                sh 'docker rm -f flask-api'
+                sh 'docker rmi -f flask-app'
+                sh 'docker build -t flask-app /var/jenkins_home/worker/app'
+                sh 'docker run -d --network jenkins_bridge -h my-flask-app --name flask-api flask-app'
             }
         }
         stage('Run') { 
             steps {
-                'docker run -p 8777:8777 -d flask-app' 
+                sh 'sleep 5'
+                sh 'curl 172.18.0.4:80'
             }
         }
         stage('Test') { 
             steps {
-                'python e2e.py' 
+                sh 'python /var/jenkins_home/worker/app/tests/e2e.py' 
             }
         }
         stage('Finalize') { 
             steps {
-                'docker-compose down'
-                'docker push danielmalka/devops_experts:flask-app'
+                sh 'docker rm -f flask-api'
+                sh 'docker login -u danielmalka -p SS1412DDM!'
+                sh 'docker tag flask-app danielmalka/flask-app:latest'
+                sh 'docker push danielmalka/flask-app:latest'
+                sh 'docker rmi -f danielmalka/flask-app:latest'
             }
         }
     }
