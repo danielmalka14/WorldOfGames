@@ -1,7 +1,0 @@
-FROM python:3.8-slim
-RUN apt-get update && apt-get install -y procps less wget curl net-tools
-RUN pip install flask requests
-WORKDIR /app
-COPY . /app
-EXPOSE 80
-CMD python MainScores.py
