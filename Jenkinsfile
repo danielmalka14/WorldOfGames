@@ -30,7 +30,7 @@ pipeline {
         stage('Finalize') { 
             steps {
                 sh 'docker rm -f flask-api'
-                sh 'docker login -u danielmalka -p SS1412DDM!'
+                sh 'docker login -u danielmalka -p XXXXXXXXXX'
                 sh 'docker tag flask-app danielmalka/flask-app:latest'
                 sh 'docker push danielmalka/flask-app:latest'
                 sh 'docker rmi -f danielmalka/flask-app:latest'
